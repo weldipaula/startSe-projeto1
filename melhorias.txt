@@ -1,0 +1,2 @@
+- adicionado header;
+- trabalho de variaveis com css para manipular cores
