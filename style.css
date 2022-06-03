@@ -3,7 +3,8 @@
 :root {
     --white: #fff;
     --black: #000;
-    --gold: #E4FF1A;
+    --gold-primary: #E4FF1A;
+    --gold-filter: #E4FF1A99;
     --red: #B80000;
     --background: #f2f3f5;
     --gray-line: #dcdde0;
@@ -29,9 +30,49 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Cabeçalho */
+header {
+    position: relative;
+    z-index: 1;
+
+}
+
+#container-navbar {
+    width: 100%;
+    height: 6rem;
+    background: var(--gold-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 1s linear;
+    font-size: 1.5rem;
+}
+
+#navbar-name {
+    padding-left: 2rem;
+
+}
+
+#navbar-links {
+    padding-right: 2rem;
+}
+
+#navbar-links ul {
+    display: flex;
+    list-style: none;
+
+}
+
+#navbar-links ul li a {
+    padding-left: 1rem;
+    color: var(--black);
+}
+
 a {
     text-decoration: none;
 }
+
+/* background */
 
 img {
     height: 100%;
@@ -47,7 +88,7 @@ p {
     letter-spacing: 0.05rem;
 }
 
-.container {
+.p-container {
     min-height: 100vh;
     width: 100%;
     display: flex;
@@ -71,11 +112,10 @@ p {
 /* Seção de apresentação */
 
 #presentation {
-    background-image: url(./background.jpeg);
+    background-image: url(./assets/background.jpeg);
     background-size: cover;
     background-position: top center;
     position: relative;
-    z-index: 1;
 }
 
 #presentation h1 {
@@ -104,9 +144,9 @@ p {
 #presentation .cta {
     display: inline-block;
     padding: 10px 30px;
-    color: var(--gold);
+    color: var(--gold-primary);
     background-color: transparent;
-    border: 2px solid var(--gold);
+    border: 2px solid var(--gold-primary);
     font-size: 2rem;
     text-transform: uppercase;
     letter-spacing: .1rem;
@@ -117,9 +157,9 @@ p {
 }
 
 #presentation .cta:hover {
-    color: white;
+    color: var(--black);
     font-weight: 500;
-    background-color: var(--gold);
+    background-color: var(--gold-primary);
 }
 
 #presentation h1 span {
@@ -130,7 +170,7 @@ p {
     width: 0%;
     animation: text_reveal_box 1s ease;
     animation-delay: .5s;
-    background-color: var(--gold);
+    background-color: var(--gold-primary);
 }
 
 #presentation h1:nth-child(1) span {
@@ -158,12 +198,14 @@ p {
 }
 
 /* Seção de Portifólio */
-
-#portfolio .portfolio {
-    flex-direction: column;
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 100px 0;
+}
+
+#portfolio .portfolio {
+    flex-direction: column;
 }
 
 #portfolio .portfolio-header h1 {
@@ -199,6 +241,69 @@ p {
     background-image: linear-gradient(60deg, #5a10b5 0%, #002349 100%);
     color: white;
 }
+
+/* animação portifolio */
+
+#portfolio .project-item:nth-child(even) .project-info {
+    animation: slideRight .7s ease;
+}
+
+#portfolio .project-item:nth-child(odd) .project-info {
+    animation: slideLeft .7s ease;
+}
+
+#portfolio .project-item:nth-child(even) .project-img {
+    animation: slideLeft .7s ease;
+}
+
+#portfolio .project-item:nth-child(odd) .project-img {
+    animation: slideRight .7s ease;
+}
+
+[data-anime] {
+    opacity: 0;
+    transition: .5s;
+}
+
+[data-anime="up"] {
+
+    transform: translate3d(0, -50px, 0)
+}
+
+[data-anime="down"] {
+
+    transform: translate3d(0, 50px, 0)
+}
+
+[data-anime].animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px)
+    }
+}
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px)
+    }
+}
+
 
 #portfolio .project-info h1 {
     font-size: 4rem;
@@ -237,6 +342,30 @@ p {
     transform: scale(1.1);
 }
 
+/* skills */
+.container-skills {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.skill {
+    text-align: center;
+}
+
+.skill img {
+    width: 100px;
+    object-fit: contain;
+}
+
+.skill p {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
 /* Keyframes */
 
 @keyframes text_reveal {
@@ -247,7 +376,7 @@ p {
 
 @keyframes text_reveal_name {
     100% {
-        color: var(--gold);
+        color: var(--gold-primary);
         font-weight: 500px;
     }
 }
@@ -259,7 +388,7 @@ p {
     }
 
     100% {
-        width: 0;
+        width: 0%;
         left: 100%
     }
 }
