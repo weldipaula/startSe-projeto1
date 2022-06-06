@@ -1,14 +1,18 @@
-//const url = 'https://api.github.com/users/weldipaula/repos'
+const url = 'https://api.github.com/users/weldipaula/repos'
 const header = document.getElementById('container-navbar')
 const project = document.getElementById("all-projects")
 const item = document.getElementById('project-item')
 
-const skills = document.querySelectorAll('[data-anime]')
 const animeClass = 'animate'
 
-// lidando com o scroll no cabeçalho
-window.addEventListener('scroll', event => {
+const windows = window.innerHeight
 
+
+window.addEventListener('scroll', event => {
+  
+
+  
+  // lidando com o scroll no cabeçalho
   if (document.documentElement.scrollTop > 40) {
     header.style.background = 'var(--gold-filter)';
     header.style.position = 'fixed';
@@ -19,50 +23,64 @@ window.addEventListener('scroll', event => {
   anime()
 })
 
+//lindando com animaçoes de elementos
 function anime () {
-  const windowTop = (window.pageYOffset*3)/2.3
+
+  const skills = document.querySelectorAll('[data-anime]')
+  const windowTop = (window.pageYOffset)
   skills.forEach(skill => {
-    console.log(skill.offsetTop);
-    console.log('top '+windowTop);
-    console.log('scroll '+ document.documentElement.scrollTop );
-    if (windowTop > skill.offsetTop) {
+    if ((windowTop*1.2) > skill.offsetTop/1.2) {
       skill.classList.add('animate')
     }
 
   })
 }
 
-
-
 //recebendo dados do github
 async function getData () {
   const response = await fetch(url)
   const data = await response.json();
+  const dataSelected = []
+  // repositorios que deseja mostrar
+  const repos = data.forEach(repu => {
+    if (
+      repu.name === 'ap-one' || 
+      repu.name === 'todo-github' || 
+      repu.name === 'unsplash-search' || 
+      repu.name === 'ignite-rshoes'
+    ){ dataSelected.push(repu) }
+  })
+  
+  // repositorios que serao renderizados
+  dataSelected.map(repo => {
+    urlImg = `https://raw.githubusercontent.com/weldipaula/${repo.name}/master/src/assets/reader/presentation.gif`
 
-  data.map(repo => {
+      //criando a div com o projeto
+      const item = document.createElement('div')
+      item.classList.add('project-item')
+      const itemInfo = document.createElement('div')
+      itemInfo.classList.add('project-info')
+      itemInfo.setAttribute('data-anime','down')
+      const itemImg = document.createElement('div')
+      itemImg.classList.add('project-img')
+      itemImg.setAttribute('data-anime','up')
+      const repoImg = document.createElement('img')
+      repoImg.src=urlImg
+      const h1 = document.createElement('h1')
+      const h2 = document.createElement('h2')
+      const p = document.createElement('p')
+      
+      h1.innerHTML = repo.name
+      h2.innerHTML = repo.description
+  
+      itemInfo.appendChild(h1)
+      itemInfo.appendChild(h2)
+      itemInfo.appendChild(p)
+      itemImg.appendChild(repoImg)
+      item.appendChild(itemInfo)
+      item.appendChild(itemImg)
 
-    console.log(repo);
-    const item = document.createElement('div')
-    item.classList.add('project-item')
-    const itemInfo = document.createElement('div')
-    itemInfo.classList.add('project-info')
-    const itemImg = document.createElement('div')
-    itemImg.classList.add('project-img')
-    const h1 = document.createElement('h1')
-    const h2 = document.createElement('h2')
-    const p = document.createElement('p')
-    
-    h1.innerHTML = repo.name
-    h2.innerHTML = repo.description
-
-    itemInfo.appendChild(h1)
-    itemInfo.appendChild(h2)
-    itemInfo.appendChild(p)
-    item.appendChild(itemInfo)
-    item.appendChild(itemImg)
-    
-    
-    project.appendChild(item)
+      project.appendChild(item)
   })
 
 }

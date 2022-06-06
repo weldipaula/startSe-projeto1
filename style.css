@@ -262,17 +262,17 @@ p {
 
 [data-anime] {
     opacity: 0;
-    transition: .5s;
+    transition: .7s;
 }
 
 [data-anime="up"] {
 
-    transform: translate3d(0, -50px, 0)
+    transform: translate3d(0, -50px, 0);
 }
 
 [data-anime="down"] {
 
-    transform: translate3d(0, 50px, 0)
+    transform: translate3d(0, 50px, 0);
 }
 
 [data-anime].animate {
@@ -280,7 +280,7 @@ p {
     transform: translate3d(0, 0, 0);
 }
 
-@keyframes slideLeft {
+@keyframes slideLefti {
     from {
         opacity: 0;
         transform: translateX(-100px)
@@ -292,7 +292,7 @@ p {
     }
 }
 
-@keyframes slideRight {
+@keyframes slideRighti {
     from {
         opacity: 0;
         transform: translateX(100px)
@@ -348,6 +348,7 @@ p {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    padding: 0;
 }
 
 .skill {
