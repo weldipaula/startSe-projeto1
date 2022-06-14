@@ -450,4 +450,7 @@ p {
     .skill img {
         width: 50px;
     }
+    .skill p {
+        font-size: 1rem;
+    }
 }
