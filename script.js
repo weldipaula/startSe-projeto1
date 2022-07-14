@@ -68,14 +68,18 @@ async function getData () {
       repoImg.src=urlImg
       const h1 = document.createElement('h1')
       const h2 = document.createElement('h2')
-      const p = document.createElement('p')
+      const link = document.createElement('a')
       
       h1.innerHTML = repo.name
       h2.innerHTML = repo.description
+      link.href = repo.homepage
+      link.innerHTML = 'VISITAR'
+
+
   
       itemInfo.appendChild(h1)
       itemInfo.appendChild(h2)
-      itemInfo.appendChild(p)
+      itemInfo.appendChild(link)
       itemImg.appendChild(repoImg)
       item.appendChild(itemInfo)
       item.appendChild(itemImg)

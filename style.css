@@ -325,6 +325,25 @@ p {
     margin-top: 10px;
 }
 
+#portfolio .project-info a {
+    margin: 1.5rem auto 0 auto;
+    padding: 10px 30px;
+    color: var(--gold-primary);
+    background-color: transparent;
+    border: 2px solid var(--gold-primary);
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    transition: .5s ease;
+    transition-property: background-color, color;
+}
+
+#portfolio .project-info a:hover {
+    color: var(--black);
+    font-weight: 500;
+    background-color: var(--gold-primary);
+}
+
 #portfolio .project-img {
     flex-basis: 50%;
     height: 300px;
